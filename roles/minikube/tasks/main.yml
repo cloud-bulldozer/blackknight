@@ -1,0 +1,7 @@
+---
+- name: download and install minikube
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/v{{ minikube_version }}/minikube-linux-amd64
+    dest: /usr/local/bin/minikube
+    mode: 0755
+    force: yes

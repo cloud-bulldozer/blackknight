@@ -1,0 +1,5 @@
+[kube]
+hostx.com ansible_user=root
+
+[shift]
+hosty.com ansible_user=root

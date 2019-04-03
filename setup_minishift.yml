@@ -1,0 +1,18 @@
+---
+  - name: Setup host for minishift
+    hosts: shift
+    remote_user: root
+    roles:
+      - role: repos
+      - role: hypervisor
+      - role: go
+      - role: dep
+      - role: kubectl
+      - role: minishift
+
+  # WIP:
+  # - name: Deploy openshift
+  #   hosts: shift
+  #   roles:
+  #     - role: minishift_start
+  #     - role: minishift_prepare

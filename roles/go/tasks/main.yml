@@ -1,0 +1,24 @@
+---
+- name: Install go
+  package:
+    name: golang
+
+- name: Setup GOPATH dir
+  file:
+    path: /root/go
+    state: directory
+
+- name: Setup gobin dir
+  file:
+    path: /root/go/bin
+    state: directory
+
+- name: Setup gosrc dir
+  file:
+    path: /root/go/src
+    state: directory
+
+- name: Setting environment variables
+  copy:
+    dest: /etc/profile.d/custom-go-path.sh
+    content: 'PATH=$PATH:/root/go/bin;GOPATH=/root/go'

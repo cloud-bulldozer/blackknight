@@ -1,0 +1,12 @@
+---
+- name: Download and unarchive minishift tarball
+  unarchive:
+    src: https://github.com/minishift/minishift/releases/download/v{{ minishift_version }}/minishift-{{ minishift_version }}-linux-amd64.tgz
+    dest: /tmp/minishift
+    remote_src: yes
+
+- name: Copy binary
+  copy:
+    src: /tmp/minishift/minishift
+    dest: /usr/local/bin/minishift
+    mode: 0755

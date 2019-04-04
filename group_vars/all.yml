@@ -8,13 +8,17 @@ minikube_cpus: 8
 minikube_memory: 32768
 minikube_disk_size: 128g
 minikube_vmdriver: kvm2
+# Minishift config
 minishift_version: 1.33.0
 openshift_version: 3.11.0
 minishift_cpus: 8
 minishift_memory: 32GB
 minishift_disk_size: 128GB
 minishift_vmdriver: kvm
+# The docker config is for setting up with a login, please replace.
 docker_config_url: http://pastebin.test.redhat.com/pastebin.php?dl=749925
 olm_url: https://raw.githubusercontent.com/operator-framework/operator-lifecycle-manager/master/deploy/upstream/quickstart/olm.yaml
+# The following 2 vars hold where the pull secret can be retrived from and be
+# placed. This is the config for redhat registry.
 pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=749927
 pull_secret_destination: /root/.1979710-benchmark-operator-ci-pull-secret.yaml

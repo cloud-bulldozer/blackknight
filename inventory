@@ -1,5 +1,5 @@
 [kube]
-smicro-6029p-03.lab.eng.bos.redhat.com
-
-[kubess]
 hosty.com ansible_user=root
+
+[shift]
+hostx.com

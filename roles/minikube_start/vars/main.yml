@@ -1,0 +1,6 @@
+---
+kubernetes_version: 1.13.4
+minikube_cpus: 8
+minikube_memory: 32768
+minikube_disk_size: 128g
+minikube_vmdriver: kvm2

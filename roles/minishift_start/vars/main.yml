@@ -1,0 +1,6 @@
+---
+openshift_version: 3.11.0
+minishift_cpus: 8
+minishift_memory: 32GB
+minishift_disk_size: 128GB
+minishift_vmdriver: kvm

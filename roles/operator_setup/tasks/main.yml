@@ -1,0 +1,39 @@
+---
+
+- name: Add olm
+  command: kubectl apply -f {{ olm_url }}
+  register: olm_status
+  until: olm_status.rc == 0
+  delay: 5
+  retries: 10
+  ignore_errors: yes
+
+- name: Add pull secret for registry.connect.redhat.com
+  get_url:
+    url: "{{ pull_secret_url }}"
+    dest: "{{ pull_secret_destination }}"
+    mode: 0755
+    force: yes
+
+- name: Setup operator-sdk
+  file:
+    path: "/root/go/src/github.com/operator-framework"
+    state: directory
+    recurse: yes
+
+- name: clone operator-sdk
+  git:
+    repo: 'https://github.com/operator-framework/operator-sdk'
+    dest: "/root/go/src/github.com/operator-framework/operator-sdk"
+    version: master
+    force: yes
+
+- name: Make dep for operator-sdk
+  shell: make dep
+  args:
+    chdir: "/root/go/src/github.com/operator-framework/operator-sdk"
+
+- name: Install operator-sdk
+  shell: make install
+  args:
+    chdir: "/root/go/src/github.com/operator-framework/operator-sdk"

@@ -1,0 +1,8 @@
+---
+  - name: Get the cluster up and running through minikube
+    hosts: kube
+    remote_user: root
+    roles:
+      - role: minikube_start
+      - role: operator_setup
+        tags: [cluster_setup]

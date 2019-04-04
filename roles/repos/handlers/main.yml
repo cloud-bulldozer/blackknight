@@ -3,8 +3,3 @@
   command: yum clean all
   args:
     warn: no
-
-- name: yum-update-cache
-  command: yum update
-  args:
-    warn: no

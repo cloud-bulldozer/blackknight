@@ -1,0 +1,33 @@
+---
+
+- name: Install libvirt and kvm packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libvirt
+    - qemu-kvm
+
+- name: Add root to libvirt
+  user:
+    name: root
+    append: True
+    group: libvirt
+
+# Don't think it's needed but adding as a safeside.
+- name: Reload user group permissions
+  command: newgrp libvirt
+
+- name: Download and install binary for kvm driver
+  get_url:
+    url: https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-centos7
+    dest: /usr/local/bin/docker-machine-driver-kvm
+    mode: 0755
+    force: yes
+
+- name: Download and install binary for kvm2 driver for minikube
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2
+    dest: /usr/local/bin/docker-machine-driver-kvm2
+    mode: 0755
+    force: yes

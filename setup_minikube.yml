@@ -4,7 +4,8 @@
     remote_user: root
     roles:
       - role: repos
-      - role: hypervisor
+      - role: kvm
+        tags: [drivers]
       - role: go
       - role: dep
       - role: kubectl

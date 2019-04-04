@@ -1,0 +1,4 @@
+---
+olm_url: https://raw.githubusercontent.com/operator-framework/operator-lifecycle-manager/master/deploy/upstream/quickstart/olm.yaml
+pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=749270
+pull_secret_destination: /root/.1979710-benchmark-operator-ci-pull-secret.yaml

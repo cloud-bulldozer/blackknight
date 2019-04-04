@@ -1,0 +1,10 @@
+---
+  - name: Get the cluster up and running through minishift
+    hosts: shift
+    remote_user: root
+    roles:
+      - role: minishift_start
+      - role: okd_setup
+        tags: [cluster_setup]
+      - role: operator_setup
+        tags: [cluster_setup]

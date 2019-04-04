@@ -4,15 +4,8 @@
     remote_user: root
     roles:
       - role: repos
-      - role: hypervisor
+      - role: kvm
       - role: go
       - role: dep
       - role: kubectl
       - role: minishift
-
-  # WIP:
-  # - name: Deploy openshift
-  #   hosts: shift
-  #   roles:
-  #     - role: minishift_start
-  #     - role: minishift_prepare

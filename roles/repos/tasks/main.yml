@@ -1,23 +1,9 @@
 ---
-- name: Remove virtualbox repository
-  yum_repository:
-    name: virtualbox
-    state: absent
-  notify: yum-clean-metadata
-
 - name: Remove k8s repo
   yum_repository:
     name: Kubernetes
     state: absent
   notify: yum-clean-metadata
-
-- name: Add virtualbox repo
-  yum_repository:
-    name: virtualbox
-    description: virtualbox repo
-    baseurl: https://download.virtualbox.org/virtualbox/rpm/$releasever/$basearch/
-    gpgcheck: no
-  notify: yum-update-cache
 
 - name: Add kubernetes repo
   yum_repository:
@@ -25,4 +11,8 @@
     description: k8s repo
     baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
     gpgcheck: no
-  notify: yum-update-cache
+
+- name: yum-update-cache
+  command: yum makecache
+  args:
+    warn: no

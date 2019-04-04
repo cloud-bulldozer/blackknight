@@ -1,0 +1,4 @@
+---
+
+- name: Start minishift
+  command: "minishift start --openshift-version {{ openshift_version }} --cpus {{ minishift_cpus }} --disk-size {{ minishift_disk_size }} --memory {{ minishift_memory }} --vm-driver {{ minishift_vmdriver }}"

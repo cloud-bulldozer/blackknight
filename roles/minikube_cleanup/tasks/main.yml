@@ -1,0 +1,14 @@
+---
+- name: Minikube delete
+  command: minikube delete
+  ignore_errors: yes
+
+- name: Remove .kube
+  file:
+    path: ~/.kube/
+    state: absent
+
+- name: Cleanup minikube dir
+  file:
+    path: ~/.minikube/
+    state: absent

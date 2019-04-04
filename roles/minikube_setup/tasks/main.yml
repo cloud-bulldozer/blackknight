@@ -1,0 +1,21 @@
+---
+
+- name: Get admin user
+  shell: kubectl config view -o=jsonpath='{range .users[*]}{.name}{"\n"}{end}}' | grep kube
+  register: kube_admin_user
+
+- name: Get cluster name
+  shell: kubectl config view -o=jsonpath='{range .clusters[*]}{.name}{"\n"}{end}}' | grep kube
+  register: kube_cluster_name
+
+- name: create the namespace benchmark
+  command: kubectl create namespace benchmark
+
+- name: set to admin context
+  command: kubectl config set-context ripsaw --namespace=benchmark --cluster={{ kube_cluster_name.stdout }} --user={{ kube_admin_user.stdout }}
+  when: okd_admin_user is succeeded and okd_cluster_name is succeeded
+  register: ripsaw_context
+
+- name: switch contxt
+  command: kubectl config use-context ripsaw
+  when: ripsaw_context is succeeded

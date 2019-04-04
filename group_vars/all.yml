@@ -1,11 +1,9 @@
 ---
-# kubectl
-k8s_minor_version: 0
-k8s_major_version: 1.13
+# kubectl and minikube to use version of client and deploy server
+kubernetes_version: 1.13.4
 # Minikube version to install
 minikube_version: 0.35.0
 # Minikube config to start k8s cluster
-kubernetes_version: 1.13.4
 minikube_cpus: 8
 minikube_memory: 32768
 minikube_disk_size: 128g
@@ -16,6 +14,7 @@ minishift_cpus: 8
 minishift_memory: 32GB
 minishift_disk_size: 128GB
 minishift_vmdriver: kvm
+docker_config_url: http://pastebin.test.redhat.com/pastebin.php?dl=749925
 olm_url: https://raw.githubusercontent.com/operator-framework/operator-lifecycle-manager/master/deploy/upstream/quickstart/olm.yaml
-pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=749270
+pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=749927
 pull_secret_destination: /root/.1979710-benchmark-operator-ci-pull-secret.yaml

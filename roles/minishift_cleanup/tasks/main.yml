@@ -1,0 +1,14 @@
+---
+- name: Minishift delete
+  command: minishift delete
+  ignore_errors: yes
+
+- name: Remove .kube
+  file:
+    path: ~/.kube/
+    state: absent
+
+- name: Cleanup minishift dir
+  file:
+    path: ~/.minishift/
+    state: absent

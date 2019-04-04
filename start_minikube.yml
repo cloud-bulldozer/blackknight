@@ -3,6 +3,9 @@
     hosts: kube
     remote_user: root
     roles:
+      - role: minikube_cleanup
       - role: minikube_start
+      - role: minikube_setup
+        tags: [cluster_setup]
       - role: operator_setup
         tags: [cluster_setup]

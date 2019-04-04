@@ -10,10 +10,4 @@
       - role: dep
       - role: kubectl
       - role: minikube
-
-  # WIP:
-  # - name: Deploy k8s
-  #   hosts: kube
-  #   roles:
-  #     - role: minikube_start
-  #     - role: minikube_prepare
+      - role: resize_root_partition

@@ -5,7 +5,9 @@
     roles:
       - role: repos
       - role: kvm
+        tags: [drivers]
       - role: go
       - role: dep
       - role: kubectl
       - role: minishift
+      - role: resize_root_partition

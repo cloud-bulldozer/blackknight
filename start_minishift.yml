@@ -3,6 +3,7 @@
     hosts: shift
     remote_user: root
     roles:
+      - role: minishift_cleanup
       - role: minishift_start
       - role: okd_setup
         tags: [cluster_setup]

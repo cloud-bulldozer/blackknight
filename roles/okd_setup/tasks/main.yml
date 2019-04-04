@@ -1,9 +1,16 @@
 ---
 
-- name: Get admin context
-  shell: kubectl config view -o=jsonpath='{range .contexts[*]}{.name}{"\n"}{end}}' | grep system
-  register: okd_admin_context
+- name: Get admin user
+  shell: kubectl config view -o=jsonpath='{range .users[*]}{.name}{"\n"}{end}}' | grep system
+  register: okd_admin_user
+
+- name: Get cluster name
+  shell: kubectl config view -o=jsonpath='{range .clusters[*]}{.name}{"\n"}{end}}' | grep 8443
+  register: okd_cluster_name
+
+- name: create the namespace benchmark
+  command: kubectl create namespace benchmark
 
 - name: set to admin context
-  command: kubectl config set current-context {{ okd_admin_context.stdout_lines[0] }}
-  when: okd_admin_context is succeeded
+  command: kubectl config set-context ripsaw --namespace=benchmark --cluster={{ okd_cluster_name.stdout }} --user={{ okd_admin_user.stdout }}
+  when: okd_admin_user is succeeded and okd_cluster_name is succeeded

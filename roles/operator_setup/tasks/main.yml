@@ -1,5 +1,16 @@
 ---
 
+- name: Install docker
+  package:
+    name: docker
+    state: present
+
+- name: Docker login
+  get_url:
+    url: "{{ docker_config_url }}"
+    dest: ~/.docker/config.json
+    force: yes
+
 - name: Add olm
   command: kubectl apply -f {{ olm_url }}
   register: olm_status

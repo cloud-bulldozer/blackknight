@@ -1,6 +1,6 @@
 - name: Download and install binary
   get_url:
-    url: https://storage.googleapis.com/kubernetes-release/release/v{{ k8s_major_version }}.{{ k8s_minor_version }}/bin/linux/amd64/kubectl
+    url: https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_version }}/bin/linux/amd64/kubectl
     dest: /usr/local/bin/kubectl
     mode: 0755
     force: yes

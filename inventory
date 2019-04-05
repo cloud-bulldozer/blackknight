@@ -1,5 +1,4 @@
 [kube]
-hosty.com ansible_user=root
-
+hosty.com
 [shift]
 hostx.com

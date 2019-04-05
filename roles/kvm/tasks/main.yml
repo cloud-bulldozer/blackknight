@@ -7,6 +7,7 @@
   with_items:
     - libvirt
     - qemu-kvm
+    - libselinux-python
 
 - name: Add root to libvirt
   user:

@@ -5,6 +5,16 @@
     name: docker
     state: present
 
+- name: Make sure docker is running
+  systemd:
+    state: started
+    name: docker
+
+- name: Setup docker dir
+  file:
+    path: ~/.docker
+    state: directory
+
 - name: Docker login
   get_url:
     url: "{{ docker_config_url }}"
@@ -18,6 +28,7 @@
   delay: 5
   retries: 10
   ignore_errors: yes
+  tags: [olm]
 
 - name: Add pull secret for registry.connect.redhat.com
   get_url:

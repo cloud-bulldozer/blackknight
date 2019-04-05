@@ -8,4 +8,4 @@
       - role: okd_setup
         tags: [cluster_setup]
       - role: operator_setup
-        tags: [cluster_setup]
+        tags: [cluster_setup, operator_setup]

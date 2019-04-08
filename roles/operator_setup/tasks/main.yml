@@ -4,6 +4,7 @@
   package:
     name: docker
     state: present
+  ignore_errors: yes
 
 - name: Make sure docker is running
   systemd:
@@ -50,10 +51,17 @@
     version: master
     force: yes
 
+- name: get gopath
+  command: go env GOPATH
+  register: env_gopath
+
 - name: Make dep for operator-sdk
   shell: make dep
+  environment:
+    PATH: "{{ lookup('env','PATH') }}:{{ env_gopath.stdout }}/bin"
   args:
     chdir: "/root/go/src/github.com/operator-framework/operator-sdk"
+  when: env_gopath is succeeded
 
 - name: Install operator-sdk
   shell: make install

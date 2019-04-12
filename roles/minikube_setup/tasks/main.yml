@@ -13,7 +13,7 @@
 
 - name: set to admin context
   command: kubectl config set-context ripsaw --namespace=benchmark --cluster={{ kube_cluster_name.stdout }} --user={{ kube_admin_user.stdout }}
-  when: okd_admin_user is succeeded and okd_cluster_name is succeeded
+  when: kube_admin_user is succeeded and kube_cluster_name is succeeded
   register: ripsaw_context
 
 - name: switch contxt

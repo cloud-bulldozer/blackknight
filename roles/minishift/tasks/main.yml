@@ -1,4 +1,8 @@
 ---
+- name: install tar
+  package:
+    name: tar
+
 - name: Download and unarchive minishift tarball
   unarchive:
     src: https://github.com/minishift/minishift/releases/download/v{{ minishift_version }}/minishift-{{ minishift_version }}-linux-amd64.tgz

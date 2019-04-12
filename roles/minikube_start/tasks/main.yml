@@ -1,4 +1,9 @@
 ---
 
+- name: Ensure libvirtd is started
+  systemd:
+    state: started
+    name: libvirtd
+
 - name: Start minikube
   command: "minikube start --kubernetes-version v{{ kubernetes_version }} --cpus {{ minikube_cpus }} --disk-size {{ minikube_disk_size }} --memory {{ minikube_memory }} --vm-driver {{ minikube_vmdriver }}"

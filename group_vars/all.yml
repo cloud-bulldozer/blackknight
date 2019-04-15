@@ -20,5 +20,5 @@ docker_config_url: http://pastebin.test.redhat.com/pastebin.php?dl=749925
 olm_url: https://raw.githubusercontent.com/operator-framework/operator-lifecycle-manager/master/deploy/upstream/quickstart/olm.yaml
 # The following 2 vars hold where the pull secret can be retrived from and be
 # placed. This is the config for redhat registry.
-pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=749927
+pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=754390
 pull_secret_destination: /root/.1979710-benchmark-operator-ci-pull-secret.yaml

@@ -5,5 +5,5 @@
   register: root_partition
 
 - name: resize root partition
-  command: lvextend -r {{ root_partition.stdout }} -L 150G
+  command: lvextend -r {{ root_partition.stdout }} -L {{ lvm_root_size }}
   when: root_partition is succeeded

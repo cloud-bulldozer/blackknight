@@ -1,4 +1,7 @@
 ---
+# size of the lvm partition that'll be mounted on /root.
+# This will be passed directly to lvextend as option "-L"
+lvm_root_size: 100G
 # kubectl and minikube to use version of client and deploy server
 kubernetes_version: 1.13.4
 # Minikube version to install

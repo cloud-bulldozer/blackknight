@@ -67,3 +67,9 @@
   shell: make install
   args:
     chdir: "/root/go/src/github.com/operator-framework/operator-sdk"
+
+- name: Copy operator-sdk binary
+  copy:
+    src: root/go/bin/operator-sdk
+    dest: usr/local/bin/operator-sdk
+    remote_src: yes

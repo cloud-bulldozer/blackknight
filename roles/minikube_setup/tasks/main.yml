@@ -8,11 +8,11 @@
   shell: kubectl config view -o=jsonpath='{range .clusters[*]}{.name}{"\n"}{end}}' | grep kube
   register: kube_cluster_name
 
-- name: create the namespace benchmark
-  command: kubectl create namespace benchmark
+- name: create the namespace ripsaw
+  command: kubectl create namespace ripsaw
 
 - name: set to admin context
-  command: kubectl config set-context ripsaw --namespace=benchmark --cluster={{ kube_cluster_name.stdout }} --user={{ kube_admin_user.stdout }}
+  command: kubectl config set-context ripsaw --namespace=ripsaw --cluster={{ kube_cluster_name.stdout }} --user={{ kube_admin_user.stdout }}
   when: kube_admin_user is succeeded and kube_cluster_name is succeeded
   register: ripsaw_context
 

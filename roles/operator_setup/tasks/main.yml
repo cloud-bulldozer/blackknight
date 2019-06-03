@@ -22,6 +22,15 @@
     dest: ~/.docker/config.json
     force: yes
 
+- name: Add olm crd
+  command: kubectl apply -f {{ olm_crd_url }}
+  register: olm_crd_status
+  until: olm_crd_status.rc == 0
+  delay: 5
+  retries: 10
+  ignore_errors: yes
+  tags: [olm]
+
 - name: Add olm
   command: kubectl apply -f {{ olm_url }}
   register: olm_status

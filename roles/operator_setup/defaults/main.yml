@@ -1,6 +1,6 @@
 ---
 olm_url: https://raw.githubusercontent.com/operator-framework/operator-lifecycle-manager/master/deploy/upstream/quickstart/olm.yaml
 olm_crd_url: https://raw.githubusercontent.com/operator-framework/operator-lifecycle-manager/master/deploy/upstream/quickstart/crds.yaml
-pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=749270
+pull_secret_url: http://pastebin.test.redhat.com/pastebin.php?dl=768997
 pull_secret_destination: /root/.1979710-benchmark-operator-ci-pull-secret.yaml
 docker_config_url: http://pastebin.test.redhat.com/pastebin.php?dl=749925

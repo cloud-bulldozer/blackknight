@@ -4,6 +4,6 @@
 
 - name: Copy dep binary
   copy:
-    src: root/go/bin/dep
-    dest: usr/local/bin/dep
+    src: /root/go/bin/dep
+    dest: /usr/local/bin/dep
     remote_src: yes

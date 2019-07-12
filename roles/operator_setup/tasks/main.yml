@@ -47,38 +47,10 @@
     mode: 0755
     force: yes
 
-- name: Setup operator-sdk
-  file:
-    path: "/root/go/src/github.com/operator-framework"
-    state: directory
-    recurse: yes
-
-- name: clone operator-sdk
-  git:
-    repo: 'https://github.com/operator-framework/operator-sdk'
-    dest: "/root/go/src/github.com/operator-framework/operator-sdk"
-    version: master
-    force: yes
-
-- name: get gopath
-  command: go env GOPATH
-  register: env_gopath
-
-- name: Make dep for operator-sdk
-  shell: make dep
-  environment:
-    PATH: "{{ lookup('env','PATH') }}:{{ env_gopath.stdout }}/bin"
-  args:
-    chdir: "/root/go/src/github.com/operator-framework/operator-sdk"
-  when: env_gopath is succeeded
-
-- name: Install operator-sdk
-  shell: make install
-  args:
-    chdir: "/root/go/src/github.com/operator-framework/operator-sdk"
-
-- name: Copy operator-sdk binary
-  copy:
-    src: /root/go/bin/operator-sdk
+- name: Download operator-sdk binary
+  get_url:
+    url: "https://github.com/operator-framework/operator-sdk/releases/download/{{operator_sdk_version}}/operator-sdk-{{operator_sdk_version}}-x86_64-linux-gnu"
     dest: /usr/local/bin/operator-sdk
-    remote_src: yes
+    force: yes
+    mode: u=rwx,g=xr,o=x
+  tags: [sdk]

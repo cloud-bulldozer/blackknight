@@ -26,5 +26,5 @@
   when: okd_admin_user is succeeded and okd_cluster_name is succeeded
 
 - name: use ripsaw context
-  command: kubectl config use-context my-ripsaw
+  command: kubectl config use-context ripsaw
   when: ripsaw_context is succeeded

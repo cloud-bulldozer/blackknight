@@ -9,10 +9,10 @@
   register: kube_cluster_name
 
 - name: create the namespace ripsaw
-  command: kubectl create namespace ripsaw
+  command: kubectl create namespace my-ripsaw
 
 - name: set to admin context
-  command: kubectl config set-context ripsaw --namespace=ripsaw --cluster={{ kube_cluster_name.stdout }} --user={{ kube_admin_user.stdout }}
+  command: kubectl config set-context ripsaw --namespace=my-ripsaw --cluster={{ kube_cluster_name.stdout }} --user={{ kube_admin_user.stdout }}
   when: kube_admin_user is succeeded and kube_cluster_name is succeeded
   register: ripsaw_context
 

@@ -2,15 +2,18 @@
 # size of the lvm partition that'll be mounted on /root.
 # This will be passed directly to lvextend as option "-L"
 lvm_root_size: 100G
-# kubectl and minikube to use version of client and deploy server
-kubernetes_version: 1.13.4
-# Minikube version to install
-minikube_version: 0.35.0
+# kubectl version
+kubernetes_version: 1.16.2
+# operator sdk version
+op_sdk_version: v0.10.0
+
 # Minikube config to start k8s cluster
+minikube_version: 1.5.2
 minikube_cpus: 8
 minikube_memory: 32768
-minikube_disk_size: 128g
+minikube_disk_size: 256g
 minikube_vmdriver: kvm2
+
 # Minishift config
 minishift_version: 1.33.0
 openshift_version: 3.11.0
@@ -18,6 +21,16 @@ minishift_cpus: 8
 minishift_memory: 32GB
 minishift_disk_size: 128GB
 minishift_vmdriver: kvm
+
+# CRC config
+crc_version: 1.7.0
+crc_cpus: 8
+crc_memory: 32768
+crc_disk_size: 256G
+crc_user: crc
+# Location of the pull secret obtained from https://cloud.redhat.com/openshift/install/crc/installer-provisioned
+crc_pull_secret: /root/.crc_ps
+
 # The docker config is for setting up with a login, please replace.
 docker_config_url: http://pastebin.test.redhat.com/pastebin.php?dl=749925
 olm_url: https://raw.githubusercontent.com/operator-framework/operator-lifecycle-manager/master/deploy/upstream/quickstart/olm.yaml

@@ -1,14 +1,13 @@
 ---
-  - name: Setup host for minikube
-    hosts: kube
+  - name: Setup host for crc
+    hosts: crc
     remote_user: root
     become: true
     roles:
-      - role: repos
       - role: kvm
         tags: [drivers]
       - role: go
       - role: dep
       - role: kubectl
-      - role: minikube
+      - role: crc
       - role: resize_root_partition

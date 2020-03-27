@@ -7,7 +7,18 @@
   with_items:
     - libvirt
     - qemu-kvm
-    - libselinux-python
+
+- name: Install selinux python when not fedora31
+  package:
+    name: libselinux-python
+    state: present
+  when: ansible_distribution != 'Fedora' and ansible_distribution_major_version != '31'
+
+- name: Install selinux python when not fedora31
+  package:
+    name: python3-libselinux
+    state: present
+  when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '31'
 
 - name: Add root to libvirt
   user:

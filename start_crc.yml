@@ -1,0 +1,9 @@
+---
+  - name: Get the cluster up and running through crc
+    hosts: crc
+    remote_user: root
+    roles:
+      - role: crc_cleanup
+      - role: crc_start
+      - role: crc_setup
+      - role: operator_sdk

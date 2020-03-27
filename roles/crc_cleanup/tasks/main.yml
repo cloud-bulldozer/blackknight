@@ -1,0 +1,26 @@
+---
+- name: crc stop
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: crc stop -f
+  ignore_errors: yes
+
+- name: crc delete
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: crc delete 
+  ignore_errors: yes
+
+- name: undefine domain
+  command: "virsh undefine crc"
+  ignore_errors: yes
+
+- name: Remove .kube
+  file:
+    path: /home/{{ crc_user }}/.crc/machines/crc/kubeconfig
+    state: absent
+
+- name: Cleanup crc dir
+  file:
+    path: /home/{{ crc_user }}/.crc
+    state: absent

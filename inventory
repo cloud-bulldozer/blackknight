@@ -1,4 +1,8 @@
 [kube]
-hosty.com
+localhost
+
 [shift]
-hostx.com
+localhost
+
+[crc]
+localhost

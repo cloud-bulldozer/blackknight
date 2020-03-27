@@ -1,0 +1,36 @@
+---
+
+- name: create user
+  user:
+    name: "{{ crc_user }}"
+    state: present
+
+- name: sudo without password for crc user
+  copy:
+    content: 'crc ALL=(ALL:ALL) NOPASSWD:ALL'
+    dest: /etc/sudoers.d/crc_nopasswd
+    mode: 0440
+
+- name: install gtar
+  package:
+    name: tar
+    state: present
+
+- name: Make crc directory
+  file:
+    path: /home/{{ crc_user }}/crc
+    state: directory
+
+- name: download and install crc
+  unarchive:
+    src: "https://mirror.openshift.com/pub/openshift-v4/clients/crc/{{ crc_version }}/crc-linux-amd64.tar.xz"
+    dest: /home/{{ crc_user }}/crc
+    remote_src: yes
+
+- name: move binary
+  command: "mv /home/{{ crc_user }}/crc/crc-linux-{{ crc_version }}-amd64/crc /usr/local/bin/crc"
+
+- name: set mode
+  file:
+    path: /usr/local/bin/crc
+    mode: 0755

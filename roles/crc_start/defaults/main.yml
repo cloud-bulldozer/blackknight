@@ -1,0 +1,4 @@
+---
+crc_cpus: 8
+crc_memory: 32768
+crc_pull_secret: /root/.crc_ps

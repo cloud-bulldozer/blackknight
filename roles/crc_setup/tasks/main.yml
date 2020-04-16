@@ -1,0 +1,63 @@
+---
+
+- name: install virt tools
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - libguestfs-tools
+    - libguestfs-xfs
+
+- name: stop crc server
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: "crc stop"
+  ignore_errors: yes
+  register: crc_stop_rc
+
+- name: forcibly stop crc server
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: "crc stop -f"
+  when: crc_stop_rc.rc != 0
+
+- name: set crc image variable
+  set_fact:
+    crc_image: /home/{{ crc_user }}/.crc/machines/crc/crc
+
+- name: expand disk
+  command: "qemu-img resize {{ crc_image }} {{ crc_disk_size }}"
+ 
+- name: copy disk
+  copy:
+    src: "{{ crc_image }}"
+    dest: "{{ crc_image }}.orig"
+    remote_src: yes
+
+- name: virt-resize
+  command: "virt-resize --expand /dev/sda4 {{ crc_image }}.orig {{ crc_image }}"
+
+- name: clean up extra disk
+  file:
+    path: "{{ crc_image }}.orig"
+    state: absent
+
+- name: Start crc
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: "crc start --cpus {{ crc_cpus }} --memory {{ crc_memory }} --pull-secret-file {{ pull_secret_destination }} --disable-update-check"
+
+- name: get crc ip
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: "crc ip"
+  register: crc_ip
+
+- name: xfs_growfs disk
+  command: ssh -i /home/{{ crc_user }}/.crc/machines/crc/id_rsa -o "StrictHostKeyChecking=no" -l core {{ crc_ip.stdout }} sudo xfs_growfs /sysroot/
+
+- name: install unbroken version of podman
+  package:
+    name: podman-1.6.2-2.fc31
+    state: present
+  when: ansible_distribution == 'Fedora' and ansible_distribution_major_version == '31'

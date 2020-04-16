@@ -1,0 +1,16 @@
+---
+
+- name: Ensure libvirtd is started
+  systemd:
+    state: started
+    name: libvirtd
+
+- name: run crc setup command  
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: "crc setup"
+
+- name: Start crc
+  become: yes
+  become_user: "{{ crc_user }}"
+  command: "crc start --cpus {{ crc_cpus }} --memory {{ crc_memory }} --pull-secret-file {{ crc_pull_secret }} --disable-update-check"
